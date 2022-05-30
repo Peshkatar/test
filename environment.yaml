@@ -7,8 +7,6 @@ dependencies:
   - matplotlib
   - plotly
   - scikit-learn
+  - scipy
   - statsmodels
-  - notebook
-
-
 
