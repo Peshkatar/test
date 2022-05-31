@@ -1,16 +1,24 @@
-FROM continuumio/miniconda3
+FROM continuumio/miniconda3:latest
 
-# copy environment-file
-COPY . .
+# update package installer
+RUN apt-get update -y; apt-get upgrade -y
 
-# # update conda
-RUN conda update -y conda
-
-# create virtual environment from the environment.yml
+# copy environment-file to the root and create virtual environment
+COPY environment.yml .
 RUN conda env create -f environment.yml
 
 # activate environment
-# ENV PATH /opt/conda/envs/data-science-test/bin:$PATH
-ENV PATH /opt/miniconda3/envs/data-science-test/bin:$PATH
-RUN /bin/bash -c "source activate data-science-test"
+RUN echo "conda activate data-science-test" >> ~/.bashrc
 
+# ENV CONDA_EXE /opt/conda/bin/conda
+# ENV CONDA_PREFIX /opt/conda/envs/data-science-test
+# ENV CONDA_PYTHON_EXE /opt/conda/bin/python
+# ENV CONDA_PROMPT_MODIFIER (data-science-test)
+# ENV CONDA_DEFAULT_ENV data-science-test
+# ENV PATH /opt/conda/envs/data-science-test/bin:/opt/conda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+# create directory for notebooks
+RUN mkdir -p /opt/notebooks
+
+# run upon launch a jupyter notebook
+CMD ["jupyter", "notebook", "--notebook-dir=/opt/notebooks", "--ip='*'", "--port=8888", "--no-browser", "--allow-root"]

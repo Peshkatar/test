@@ -1,15 +1,12 @@
 name: data-science-test
-
 channels:
   - conda-forge
-  - default
-
+  - defaults
 dependencies:
+  - matplotlib
+  - notebook
+  - openpyxl
   - pandas
   - scikit-learn
-  - matplotlib
-  - plotly
   - statsmodels
-  - openpyxl
   - xlrd
-

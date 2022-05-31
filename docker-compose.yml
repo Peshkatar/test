@@ -5,6 +5,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    environment:
+      - JUPYTER_TOKEN=DELTA
     ports:
-      -8888:8888
+      - 8888:8888
     container_name: data-science-test
