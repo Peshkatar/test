@@ -18,9 +18,9 @@ ENV PATH /opt/conda/envs/data-science-test/bin:/opt/conda/bin:/usr/local/sbin:/u
 RUN echo "conda activate data-science-test" >> ~/.bashrc
 #SHELL ["/bin/bash", "--login", "-c"]
 
-EXPOSE 8899
+EXPOSE 5000
 
-ENTRYPOINT ["jupyter", "notebook", "--ip=0.0.0.0", "--port=8899", "--allow-root"]
+ENTRYPOINT ["jupyter", "notebook", "--ip=0.0.0.0", "--port=5000", "--allow-root"]
 
 
 # \
