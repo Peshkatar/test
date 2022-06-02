@@ -8,5 +8,5 @@ services:
     volumes:
       - ./:/home
     ports:
-      - 8888:8888
+      - 8888:5000
     container_name: data-science-test
